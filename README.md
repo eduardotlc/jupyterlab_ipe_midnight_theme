@@ -1,18 +1,20 @@
-# Ipe Midnight for JupyterLab
-
-**A comfy dark JupyterLab theme**
-
-Includes jupyter console and ipython support
+# Ipe Midnight JupyterLab
 
 [![Email-Me](https://raw.githubusercontent.com/eduardotlc/jupyterlab_ipe_midnight_theme/main/.assets/email.svg)](mailto:eduardotcampos@hotmail.com)
 [![License](https://raw.githubusercontent.com/eduardotlc/jupyterlab_ipe_midnight_theme/main/.assets/license.svg)](https://opensource.org/license/bsd-3-clause-open-mpi)
 [![v3.14.8](https://raw.githubusercontent.com/eduardotlc/jupyterlab_ipe_midnight_theme/main/.assets/python.svg)](https://www.python.org/downloads/release/python-3148/)
 [![4.7.0](https://raw.githubusercontent.com/eduardotlc/jupyterlab_ipe_midnight_theme/main/.assets/jupyter.svg)](https://github.com/jupyterlab/jupyterlab)
 
+**A comfy dark JupyterLab theme**
+
+![jupyterlab_ipe_midnight](https://raw.githubusercontent.com/eduardotlc/jupyterlab_ipe_midnight_theme/main/.assets/example_theme.png)
+
+> [!NOTE]
+> Includes jupyter console and ipython support
+
 > [!WARNING]
 > Dark only theme
 
-![jupyterlab_ipe_midnight](https://raw.githubusercontent.com/eduardotlc/jupyterlab_ipe_midnight_theme/main/.assets/example_theme.png)
 
 It comes with the three variants:
 
