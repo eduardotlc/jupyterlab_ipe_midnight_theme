@@ -1,0 +1,10 @@
+/* ----------------------------------------------------------------------------
+| Ipe Midnight: a comfy dark JupyterLab theme, adapted from the Neovim colorscheme.
+|
+| Copyright (c) 2026, Eduardo Campos
+| Distributed under the terms of the BSD-3-Clause License.
+|--------------------------------------------------------------------------- */
+
+@import url('./palette.css');
+@import url('./variables.css');
+@import url('./overrides.css');

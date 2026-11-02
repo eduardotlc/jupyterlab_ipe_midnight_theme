@@ -1,0 +1,202 @@
+/* Rules for what JupyterLab does not expose through theme variables. */
+
+/* Set the default typography for monospace elements. */
+.jp-ThemedContainer tt,
+.jp-ThemedContainer code,
+.jp-ThemedContainer kbd,
+.jp-ThemedContainer samp,
+.jp-ThemedContainer pre {
+  font-family: var(--jp-code-font-family);
+  font-size: var(--jp-code-font-size);
+  line-height: var(--jp-code-line-height);
+}
+
+/* The gaps between panels show the shell, by default a tone lighter than anything
+   around it. Matching the sidebars keeps the frame from competing with the content. */
+.jp-LabShell {
+  background: var(--jp-layout-color2);
+}
+
+/* Rendered Markdown headings follow the pink to purple ladder of the Neovim
+   @markup.heading groups, which is what gives a notebook its structure. */
+.jp-RenderedHTMLCommon h1 {
+  color: var(--ipe-bright-pink);
+}
+
+.jp-RenderedHTMLCommon h2 {
+  color: var(--ipe-pastel-pink);
+}
+
+.jp-RenderedHTMLCommon h3 {
+  color: var(--ipe-plum2);
+}
+
+.jp-RenderedHTMLCommon h4 {
+  color: var(--ipe-plum3);
+}
+
+.jp-RenderedHTMLCommon h5,
+.jp-RenderedHTMLCommon h6 {
+  color: var(--ipe-pastel-purple);
+}
+
+.jp-RenderedHTMLCommon blockquote {
+  border-left-color: var(--ipe-purple4);
+  color: var(--ipe-yellow2);
+}
+
+/* JupyterLab prints the toast accept button with the inverse font, unlike every
+   other accept button. Dark text fails on the button color white needs. */
+.jp-toast-button.jp-mod-accept,
+.jp-toast-button.jp-mod-accept:hover {
+  color: white;
+}
+
+/* ANSI output: the 16 base colors of the palette. ANSI black is lifted to gray2,
+   since its palette value is close to invisible as text on the background. */
+
+.jp-RenderedText pre .ansi-black-fg {
+  color: var(--ipe-gray2);
+}
+
+.jp-RenderedText pre .ansi-black-bg {
+  background-color: var(--ipe-black);
+}
+
+.jp-RenderedText pre .ansi-black-intense-fg {
+  color: var(--ipe-gray);
+}
+
+.jp-RenderedText pre .ansi-black-intense-bg {
+  background-color: var(--ipe-bright-black);
+}
+
+.jp-RenderedText pre .ansi-red-fg {
+  color: var(--ipe-red);
+}
+
+.jp-RenderedText pre .ansi-red-bg {
+  background-color: var(--ipe-red);
+}
+
+.jp-RenderedText pre .ansi-red-intense-fg {
+  color: var(--ipe-bright-red);
+}
+
+.jp-RenderedText pre .ansi-red-intense-bg {
+  background-color: var(--ipe-bright-red);
+}
+
+.jp-RenderedText pre .ansi-green-fg {
+  color: var(--ipe-green);
+}
+
+.jp-RenderedText pre .ansi-green-bg {
+  background-color: var(--ipe-green);
+}
+
+.jp-RenderedText pre .ansi-green-intense-fg {
+  color: var(--ipe-bright-green);
+}
+
+.jp-RenderedText pre .ansi-green-intense-bg {
+  background-color: var(--ipe-bright-green);
+}
+
+.jp-RenderedText pre .ansi-yellow-fg {
+  color: var(--ipe-yellow);
+}
+
+.jp-RenderedText pre .ansi-yellow-bg {
+  background-color: var(--ipe-yellow);
+}
+
+.jp-RenderedText pre .ansi-yellow-intense-fg {
+  color: var(--ipe-bright-yellow);
+}
+
+.jp-RenderedText pre .ansi-yellow-intense-bg {
+  background-color: var(--ipe-bright-yellow);
+}
+
+.jp-RenderedText pre .ansi-blue-fg {
+  color: var(--ipe-blue);
+}
+
+.jp-RenderedText pre .ansi-blue-bg {
+  background-color: var(--ipe-blue);
+}
+
+.jp-RenderedText pre .ansi-blue-intense-fg {
+  color: var(--ipe-bright-blue);
+}
+
+.jp-RenderedText pre .ansi-blue-intense-bg {
+  background-color: var(--ipe-bright-blue);
+}
+
+.jp-RenderedText pre .ansi-magenta-fg {
+  color: var(--ipe-magenta);
+}
+
+.jp-RenderedText pre .ansi-magenta-bg {
+  background-color: var(--ipe-magenta);
+}
+
+.jp-RenderedText pre .ansi-magenta-intense-fg {
+  color: var(--ipe-bright-magenta);
+}
+
+.jp-RenderedText pre .ansi-magenta-intense-bg {
+  background-color: var(--ipe-bright-magenta);
+}
+
+.jp-RenderedText pre .ansi-cyan-fg {
+  color: var(--ipe-cyan);
+}
+
+.jp-RenderedText pre .ansi-cyan-bg {
+  background-color: var(--ipe-cyan);
+}
+
+.jp-RenderedText pre .ansi-cyan-intense-fg {
+  color: var(--ipe-bright-cyan);
+}
+
+.jp-RenderedText pre .ansi-cyan-intense-bg {
+  background-color: var(--ipe-bright-cyan);
+}
+
+.jp-RenderedText pre .ansi-white-fg {
+  color: var(--ipe-white);
+}
+
+.jp-RenderedText pre .ansi-white-bg {
+  background-color: var(--ipe-white);
+}
+
+.jp-RenderedText pre .ansi-white-intense-fg {
+  color: var(--ipe-bright-white);
+}
+
+.jp-RenderedText pre .ansi-white-intense-bg {
+  background-color: var(--ipe-bright-white);
+}
+
+/* Text on the light ANSI backgrounds, such as highlighted traceback lines. */
+.jp-RenderedText pre .ansi-red-bg,
+.jp-RenderedText pre .ansi-green-bg,
+.jp-RenderedText pre .ansi-yellow-bg,
+.jp-RenderedText pre .ansi-blue-bg,
+.jp-RenderedText pre .ansi-magenta-bg,
+.jp-RenderedText pre .ansi-cyan-bg,
+.jp-RenderedText pre .ansi-white-bg,
+.jp-RenderedText pre .ansi-red-intense-bg,
+.jp-RenderedText pre .ansi-green-intense-bg,
+.jp-RenderedText pre .ansi-yellow-intense-bg,
+.jp-RenderedText pre .ansi-blue-intense-bg,
+.jp-RenderedText pre .ansi-magenta-intense-bg,
+.jp-RenderedText pre .ansi-cyan-intense-bg,
+.jp-RenderedText pre .ansi-white-intense-bg {
+  color: var(--ipe-bg);
+}

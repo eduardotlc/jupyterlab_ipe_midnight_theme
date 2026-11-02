@@ -1,0 +1,108 @@
+name: Checks
+
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: '*'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  style:
+    name: Formatting and writing
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Base Setup
+        uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
+        with:
+          python_version: '3.14'
+
+      - name: Install the tools
+        run: |
+          set -eux
+          python -m pip install "jupyterlab>=4.5,<5" "ruff>=0.8" "codespell>=2.3" actionlint-py
+          jlpm
+
+      - name: Check the Python code
+        run: |
+          ruff check --output-format=github .
+          ruff format --check .
+
+      - name: Check the styles, TypeScript, JSON and Markdown
+        run: jlpm lint:check
+
+      - name: Check the TypeScript types
+        run: jlpm tsc --noEmit
+
+      - name: Check the workflows
+        run: actionlint
+
+      - name: Check the spelling
+        run: codespell
+
+      - name: Check whitespace and conflict markers
+        # Compares against git's empty tree, so that every tracked file is checked.
+        run: |
+          empty_tree="$(git hash-object -t tree /dev/null)"
+          git diff --check "$empty_tree" HEAD -- . ':!yarn.lock' ':!.assets'
+
+      - name: Check that files end with a newline
+        run: |
+          status=0
+          while IFS= read -r file; do
+            if [ -s "$file" ] && [ -n "$(tail -c 1 "$file")" ]; then
+              echo "::error file=$file::missing newline at the end of the file"
+              status=1
+            fi
+          done < <(git ls-files -- . ':!.assets')
+          exit "$status"
+
+  python-tests:
+    name: Python ${{ matrix.python-version }}, IPython ${{ matrix.ipython }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.10', '3.11', '3.12', '3.13', '3.14']
+        ipython: ['latest']
+        include:
+          # The last release without theme discovery, which needs register_ipython_themes().
+          - python-version: '3.14'
+            ipython: '9.17.1'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Base Setup
+        uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
+        with:
+          python_version: ${{ matrix.python-version }}
+
+      - name: Install the test dependencies
+        env:
+          IPYTHON_VERSION: ${{ matrix.ipython }}
+        run: |
+          set -eux
+          python -m pip install "jupyterlab>=4.5,<5" "pytest>=8"
+          if [ "$IPYTHON_VERSION" != latest ]; then
+            python -m pip install "ipython==$IPYTHON_VERSION"
+          fi
+          # Provides the upstream JupyterLab variables that the theme must define.
+          jlpm
+
+      - name: Run the tests and docstring examples
+        run: python -m pytest
