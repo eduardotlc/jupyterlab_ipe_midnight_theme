@@ -6,7 +6,7 @@ Set the version, then build the sdist and wheel:
 pip install build twine hatch
 hatch version <new-version>   # updates package.json
 jlpm clean:all
-git clean -dfX                # removes every ignored file, node_modules included
+rm -rf dist
 jlpm install
 python -m build
 ```

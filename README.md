@@ -15,7 +15,6 @@
 > [!WARNING]
 > Dark only theme
 
-
 It comes with the three variants:
 
 | Theme               | Character                                  |
